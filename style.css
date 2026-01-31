@@ -1,0 +1,89 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.btn {
+  width: fit-content;
+  padding: 14px 22px;
+  border-radius: 50px;
+  border: 2px solid white;
+  color: white;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  will-change: transform;
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+
+.container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0c0c0c;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("./noise.svg") repeat;
+  background-size: cover;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.gradient-layer {
+  position: absolute;
+  inset: 0;
+  transition: opacity 1.2s ease;
+  background-size: 300% 300%;
+  animation: slowMove 10s linear infinite alternate;
+  will-change: background-position;
+}
+
+.gradient-layer.next {
+  opacity: 0;
+}
+
+.gradient-layer.active {
+  opacity: 1;
+}
+
+@keyframes slowMove {
+  0% {
+    background-position: 0% 25%;
+  }
+  25% {
+    background-position: 50% 75%;
+  }
+  50% {
+    background-position: 100% 75%;
+  }
+  75% {
+    background-position: 50% 25%;
+  }
+  100% {
+    background-position: 0% 25%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-layer {
+    animation: none;
+  }
+}
