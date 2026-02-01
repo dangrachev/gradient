@@ -10,21 +10,28 @@ body {
 }
 
 .btn {
-  width: fit-content;
-  padding: 14px 22px;
+  padding: clamp(14px, 2vw, 18px) clamp(22px, 2vw, 26px);
+  font-size: clamp(24px, 2.5vw, 28px);
+  min-height: 44px;
+  min-width: 44px;
   border-radius: 50px;
   border: 2px solid white;
   color: white;
-  font-size: 18px;
   background: rgba(255, 255, 255, 0.15);
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
   will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .btn:active {
   transform: scale(0.9);
+}
+
+.btn:focus {
+  outline: none;
 }
 
 .container {
@@ -41,10 +48,11 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("./noise.svg") repeat;
-  background-size: cover;
-  opacity: 0.12;
+  background: url("./noise.png") repeat;
+  background-size: auto;
+  opacity: 0.1;
   pointer-events: none;
+  filter: contrast(200%);
 }
 
 .gradient-layer {
@@ -52,8 +60,8 @@ body {
   inset: 0;
   transition: opacity 1.2s ease;
   background-size: 300% 300%;
-  animation: slowMove 10s linear infinite alternate;
-  will-change: background-position;
+  animation: slowMove 12s linear infinite alternate;
+  filter: blur(10px) saturate(120%);
 }
 
 .gradient-layer.next {
@@ -87,3 +95,6 @@ body {
     animation: none;
   }
 }
+
+/* ПРОВЕСТИ ОПТИМИЗАЦИЮ - СЕЙЧАС СИЛЬНО ЛАГАЕТ */
+/* убрать выделение с кнопки при тапе на мобилке */
